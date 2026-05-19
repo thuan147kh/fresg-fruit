@@ -2,8 +2,6 @@ import {
   Link,
   Outlet,
   createRootRoute,
-  HeadContent,
-  Scripts,
   useRouterState,
   useNavigate,
 } from "@tanstack/react-router";
@@ -12,8 +10,6 @@ import { AdminLayout } from "@/components/layout/AdminLayout";
 import { AuthProvider, useAuth } from "@/contexts/AuthContext";
 import { useEffect } from "react";
 import { Loader2 } from "lucide-react";
-
-import appCss from "../styles.css?url";
 
 function NotFoundComponent() {
   return (
@@ -38,36 +34,9 @@ function NotFoundComponent() {
 }
 
 export const Route = createRootRoute({
-  head: () => ({
-    meta: [
-      { charSet: "utf-8" },
-      { name: "viewport", content: "width=device-width, initial-scale=1" },
-      { title: "Xus Admin — Quản trị sàn TMĐT nông sản" },
-      {
-        name: "description",
-        content: "Hệ thống quản trị Xus — sàn thương mại điện tử rau củ quả tươi sạch.",
-      },
-    ],
-    links: [{ rel: "stylesheet", href: appCss }],
-  }),
-  shellComponent: RootShell,
   component: RootComponent,
   notFoundComponent: NotFoundComponent,
 });
-
-function RootShell({ children }: { children: React.ReactNode }) {
-  return (
-    <html lang="vi">
-      <head>
-        <HeadContent />
-      </head>
-      <body>
-        {children}
-        <Scripts />
-      </body>
-    </html>
-  );
-}
 
 function RootComponent() {
   return (
